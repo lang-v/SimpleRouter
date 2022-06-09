@@ -7,7 +7,9 @@
  * in the user manual at https://docs.gradle.org/6.7/userguide/multi_project_builds.html
  */
 
-rootProject.name = 'simple-router'
+rootProject.name = 'SimpleRouter'
 include('plugin')
-include 'RouterCore'
+include 'core'
+include 'api'
+include 'Test'
 

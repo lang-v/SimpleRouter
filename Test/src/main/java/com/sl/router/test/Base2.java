@@ -1,2 +1,4 @@
-package com.sl.router.test;public interface Base2 {
+package com.sl.router.test;
+
+public interface Base2 {
 }

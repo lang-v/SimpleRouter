@@ -1,12 +1,23 @@
 package com.sl.router;
 
 /**
- * 整个路由框架对外暴露的所有功能
+ * 路由工具
+ *
+ * @date 2022-05-30
+ * @author sanshui
  */
 public class SimpleRouter {
 
-    private SimpleRouter() {
+    private RouterCollection collection;
 
+    private SimpleRouter() {
+        try {
+            Class<?> clazz = Class.forName("com.sl.router.RouterCollectionImpl");
+            collection = (RouterCollection) clazz.newInstance();
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+            System.out.println("请检查项目编译环境,确定router-plugin是否开启。");
+        }
     }
 
     public SimpleRouter getInstance() {
@@ -14,7 +25,7 @@ public class SimpleRouter {
     }
 
     public static  <T> T getService(Class<T> tClass){
-        return null;
+        return (T) SingleTon.instance.collection.findByInterface(tClass);
     }
 
     public static void to(Object context, String path){

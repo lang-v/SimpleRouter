@@ -6,6 +6,7 @@
  * User Manual available at https://docs.gradle.org/6.7/userguide/custom_plugins.html
  */
 
+
 plugins {
     // Apply the Java Gradle plugin development plugin to add support for developing Gradle plugins
     id 'java-gradle-plugin'
@@ -13,6 +14,8 @@ plugins {
     // Apply the Groovy plugin to add support for Groovy
     id 'groovy'
 }
+group "com.sl.router"
+version "1.0.0"
 
 repositories {
     // Use JCenter for resolving dependencies.
@@ -30,11 +33,16 @@ dependencies {
     api "com.android.tools.build:gradle:3.5.3"
 }
 
+// 定义插件信息
 gradlePlugin {
     // Define the plugin
     plugins {
-        SimpleRouter{
-            id = 'com.sl.router.router-plugin'
+        simpleRouter{
+            id = 'com.sl.router'
+            // classpath com.sl.router:项目名(plugin):version
+//          // apply plugin "com.sl.router"
+            displayName = 'Router Plugin'
+            description = "路由插件，提取AAR中的专属信息"
             implementationClass = 'com.sl.router.RouterPlugin'
         }
     }
@@ -62,14 +70,14 @@ tasks.named('check') {
 }
 
 // publish start
-publishing {
-    publications {
-        RouterPlugin(MavenPublication) {
-            groupId = 'com.sl.router'
-            artifactId = 'router-plugin'
-            version = '1.0.0'
-
-            from components.java
-        }
-    }
-}
+//publishing {
+//    publications {
+//        RouterPlugin(MavenPublication) {
+//            groupId = 'com.sl.router'
+//            artifactId = 'router-plugin'
+//            version = '1.0.0'
+//
+//            from components.java
+//        }
+//    }
+//}
